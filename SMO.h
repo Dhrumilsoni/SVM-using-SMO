@@ -1,6 +1,8 @@
+/*
+Author: Dhrumil Soni
+*/
 #include<bits/stdc++.h>
 #include"vector.h"
-
 double pos(double x){
 	if(x<0)
 		return -x;
@@ -43,6 +45,8 @@ class compute{
 				double Ei=get_function_value_at(data[i])-data[i].val.second;
 				if((data[i].val.second*Ei<-tol && alphas[i]<c) || (data[i].val.second*Ei>tol && alphas[i]>0)){
 					int j=rand()%size;
+					while(j==i)
+						j=rand()%size;
 					double Ej=get_function_value_at(data[j])-data[j].val.second;
 					double L, H;
 					if(data[i].val.second!=data[j].val.second){

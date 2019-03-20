@@ -1,3 +1,6 @@
+/*
+Author: Dhrumil Soni
+*/
 #include<bits/stdc++.h>
 #include"vector.h"
 
@@ -89,3 +92,8 @@ class compute{
 		}
 	}
 };
+
+
+/*
+Path:
+C:\Users\dhrum\AppData\Roaming\Sublime Text 3\Packages\User\SVM*/

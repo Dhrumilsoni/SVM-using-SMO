@@ -1,3 +1,6 @@
+/*
+Author: Dhrumil Soni
+*/
 #include<bits/stdc++.h>
 #include"SMO.h"
 //using namespace std;
