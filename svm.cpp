@@ -1,9 +1,12 @@
 /*
 Author: Dhrumil Soni
 */
-#include<bits/stdc++.h>
-#include"SMO.h"
+#include<iostream>
+#include<vector>
+#include<utility>
+#include<iomanip>
 #include<fstream>
+#include"SMO.h"
 //using namespace std;
 
 int main(){
@@ -74,10 +77,11 @@ int main(){
 			std::getline(s,temp,',');
 			pdata[i]=stod(temp);
 		}
-		//std::cout<<"predicted class "<<obj.predict(pdata,dimension)<<"\n";
 		std::string st;
 		std::getline(s,st,',');
-		if((obj.predict(pdata,dimension)>0.0 && st=="Iris-setosa") || (obj.predict(pdata,dimension)<0.0 && st=="Iris-versicolor")){
+		double predicted_value=(obj.predict(pdata,dimension));
+		//std::cout<<"predicted class "<<predicted_value<<"\n";
+		if((predicted_value>0.0 && st=="Iris-setosa") || (predicted_value<0.0 && st=="Iris-versicolor")){
 			cor++;
 		}else{
 			mis++;

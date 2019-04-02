@@ -1,7 +1,11 @@
 /*
 Author: Dhrumil Soni
 */
-#include<bits/stdc++.h>
+#include<iostream>
+#include<vector>
+#include<utility>
+#include<iomanip>
+#include<cmath>
 #include"vector.h"
 double pos(double x){
 	if(x<0)
@@ -31,7 +35,7 @@ class compute{
 	double get_function_value_at(vector a){
 		double val=0;
 		for(int i=0;i<size;i++){
-			val+=alphas[i]*data[i].val.second*dot_product(data[i], a);
+			val+=alphas[i]*data[i].val.second*kernel(data[i], a);
 		}
 		val+=b;
 		return val;
@@ -61,7 +65,7 @@ class compute{
 					if(L==H){
 						continue;
 					}
-					double eta=2*dot_product(data[i],data[j])-dot_product(data[i],data[i])-dot_product(data[j],data[j]);
+					double eta=2*kernel(data[i],data[j])-kernel(data[i],data[i])-kernel(data[j],data[j]);
 					if(eta>=0){
 						continue;
 					}
@@ -76,8 +80,8 @@ class compute{
 					if(pos(alphas[j]-alphaj)<1e-5)
 						continue;
 					alphas[i]=alphas[i]+data[i].val.second*data[j].val.second*(alphaj-alphas[j]);
-					double b1=b-Ei-data[i].val.second*(alphas[i]-alphai)*dot_product(data[i],data[i])-data[j].val.second*(alphas[j]-alphaj)*dot_product(data[i],data[j]);
-					double b2=b-Ej-data[i].val.second*(alphas[i]-alphai)*dot_product(data[i],data[j])-data[j].val.second*(alphas[j]-alphaj)*dot_product(data[j],data[j]);
+					double b1=b-Ei-data[i].val.second*(alphas[i]-alphai)*kernel(data[i],data[i])-data[j].val.second*(alphas[j]-alphaj)*kernel(data[i],data[j]);
+					double b2=b-Ej-data[i].val.second*(alphas[i]-alphai)*kernel(data[i],data[j])-data[j].val.second*(alphas[j]-alphaj)*kernel(data[j],data[j]);
 					if(alphas[i]>0 && alphas[i]<c){
 						b=b1;
 					}else if(alphas[j]>0 && alphas[j]<c){
@@ -101,8 +105,8 @@ class compute{
 		double zz=0;
 		//u.print();
 		for(int i=0;i<size;i++){
-			zz+=alphas[i]*data[i].val.second*dot_product(data[i],u);
-			//std::cout<<alphas[i]<<" "<<data[i].val.second<<" "<<dot_product(data[i],u)<<"\n";
+			zz+=alphas[i]*data[i].val.second*kernel(data[i],u);
+			//std::cout<<alphas[i]<<" "<<data[i].val.second<<" "<<kernel(data[i],u)<<"\n";
 		}
 		//std::cout<<"\n"<<zz<<" "<<b<<"\n";
 		zz+=b;
