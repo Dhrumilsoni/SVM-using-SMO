@@ -14,6 +14,7 @@ class vector{
 			std::cout<<val.first[i]<<" ";
 		}
 		std::cout<<"\n";
+		std::cout<<val.second<<"\n";
 		//std::cout<<val.first.first<<" "<<val.first.second<<"\n";
 	}
 };

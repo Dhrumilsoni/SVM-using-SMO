@@ -38,17 +38,19 @@ class compute{
 	}
 
 	void get_result(){
+		//int tot=0;
 		srand(time(NULL));
 		while(passes<max_passes){
 			int num_changed_alphas=0;
 			for(int i=0;i<size;i++){
+				//tot+=1;
 				double Ei=get_function_value_at(data[i])-data[i].val.second;
 				if((data[i].val.second*Ei<-tol && alphas[i]<c) || (data[i].val.second*Ei>tol && alphas[i]>0)){
 					int j=rand()%size;
 					while(j==i)
 						j=rand()%size;
 					double Ej=get_function_value_at(data[j])-data[j].val.second;
-					double L, H;
+ 					double L, H;
 					if(data[i].val.second!=data[j].val.second){
 						L=std::max((double)0, alphas[j]-alphas[i]);
 						H=std::min(c,c+alphas[j]-alphas[i]);
@@ -91,14 +93,18 @@ class compute{
 			else
 				passes=0;
 		}
+		//std::cout<<"tot "<<tot<<"\n";
 	}
 
 	double predict(std::vector<double> x, int dim){
 		vector u(x,1);
-		int zz=0;
-		for(int i=0;i<dim;i++){
+		double zz=0;
+		//u.print();
+		for(int i=0;i<size;i++){
 			zz+=alphas[i]*data[i].val.second*dot_product(data[i],u);
+			//std::cout<<alphas[i]<<" "<<data[i].val.second<<" "<<dot_product(data[i],u)<<"\n";
 		}
+		//std::cout<<"\n"<<zz<<" "<<b<<"\n";
 		zz+=b;
 		return zz;
 	}
